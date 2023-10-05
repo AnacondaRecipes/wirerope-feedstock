@@ -1,0 +1,51 @@
+{% set name = "wirerope" %}
+{% set version = "0.4.7" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/w/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: f3961039218276283c5037da0fa164619def0327595f10892d562a61a8603990
+
+build:
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
+  number: 0
+
+requirements:
+  host:
+    - python
+    - pip
+    - setuptools
+    - wheel
+  run:
+    - python
+    - six >=1.11.0
+    - inspect2 >=0.1.0
+    - singledispatch >=3.4.0.3
+
+test:
+  imports:
+    - wirerope
+  commands:
+    - pip check
+  requires:
+    - pip
+
+about:
+  home: https://github.com/youknowone/wirerope
+  summary: "'Turn functions and methods into fully controllable objects'"
+  license: BSD-2-Clause
+  license_file: LICENSE
+  license_family: BSD
+  summary: WireRope is a wrapper interface for python callable.
+  description: |
+    wirerope.rope.WireRope is the wrapper for callables. By wrapping a function with WireRope with a custom subclass of
+    the wirerope.wire.Wire class, the wire object will be created by each function or bound method.
+  doc_url: https://wirerope.readthedocs.io
+  dev_url: https://github.com/youknowone/wirerope
+
+extra:
+  recipe-maintainers:
+    - boldorider4
