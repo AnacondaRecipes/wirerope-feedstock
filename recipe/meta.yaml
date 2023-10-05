@@ -22,8 +22,6 @@ requirements:
   run:
     - python
     - six >=1.11.0
-    - inspect2 >=0.1.0
-    - singledispatch >=3.4.0.3
 
 test:
   imports:
