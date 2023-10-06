@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/w/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: f3961039218276283c5037da0fa164619def0327595f10892d562a61a8603990
+  url: https://github.com/youknowone/{{ name }}/archive/refs/tags/{{ version }}.tar.gz
+  sha256: ddac3e17a36f95088c815be27e5841c7278989c6a3a6852993921374017be1f8
 
 build:
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation -vv
@@ -26,10 +26,14 @@ requirements:
 test:
   imports:
     - wirerope
+  source_files:
+    - tests
   commands:
     - pip check
+    - pytest tests
   requires:
     - pip
+    - pytest
 
 about:
   home: https://github.com/youknowone/wirerope
